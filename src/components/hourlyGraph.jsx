@@ -3,7 +3,8 @@ import { Line } from 'react-chartjs-2';
 import 'chartjs-plugin-annotation'; // Import the annotation plugin
 import {Chart as ChartJS, CategoryScale, TimeScale, LinearScale, PointElement, LineElement, Filler } from 'chart.js';
 import "./../styles/graph.css"
-
+import leftArrow from '../assets/icons/left-arrow.png'
+import rightArrow from '../assets/icons/right-arrow.png'
 ChartJS.register(CategoryScale, TimeScale, LinearScale,PointElement, LineElement, Filler );
 
 const WeatherChart = ({ city,screenWidth }) => {
@@ -137,44 +138,70 @@ const WeatherChart = ({ city,screenWidth }) => {
 
 
     return (
-        <div className='graphContainer'>
-            <div className='graphHandler'>
-                <p>Upcoming hours</p>
-                <div className='btns'>
-                    <p onClick={handlePrevButtonClick} className='nextday prevday'><span className="material-symbols-rounded ">
+      <div className="graphContainer">
+        <div className="graphHandler">
+          <p>Upcoming hours</p>
+          <div className="btns">
+            <p onClick={handlePrevButtonClick} className="nextday prevday">
+              {/* <span className="material-symbols-rounded ">
                         chevron_left
-                    </span>Prev </p>
-                    <p onClick={handleNextButtonClick} className='nextday'>Next<span className="material-symbols-rounded">
+                    </span> */}
+              <img
+                src={leftArrow}
+                alt=""
+                srcset=""
+                style={{ height: "1.2em" }}
+              />
+              Prev
+            </p>
+            <p onClick={handleNextButtonClick} className="nextday">
+              Next
+              {/* <span className="material-symbols-rounded">
                         chevron_right
-                    </span> </p>
-                </div>
-
-            </div>
-            <div className='graphContent'>
-                <div className='hourWeatherDetails'>
-                    {hourlyData.slice(startIndex, startIndex + (screenWidth < 600 ? 5 : 8)).map((item) => (
-                        <div className='hourDetails' key={item.dt}>
-                            <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt="Weather Icon" />
-                            <p>{`${Math.round(item.main.temp)}°`}</p>
-                            <p className='weatherName'>{item.weather[0].main}</p>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="graph" >
-                    <Line data={chartData} options={chartOptions} />
-                </div>
-                <div className='hourWeatherDetails'>
-                    {hourlyData.slice(startIndex, startIndex + (screenWidth < 600 ? 5 : 8)).map((item) => (
-
-                        <div className='hourDetails Time' key={item.dt} style={{ textAlign: 'center' }}>
-                            {formatTime(item.dt_txt)}
-                        </div>
-
-                    ))}
-                </div>
-            </div>
+                    </span>  */}
+              <img
+                src={rightArrow}
+                alt=""
+                srcset=""
+                style={{ height: "1.2em" }}
+              />
+            </p>
+          </div>
         </div>
+        <div className="graphContent">
+          <div className="hourWeatherDetails">
+            {hourlyData
+              .slice(startIndex, startIndex + (screenWidth < 600 ? 5 : 8))
+              .map((item) => (
+                <div className="hourDetails" key={item.dt}>
+                  <img
+                    src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
+                    alt="Weather Icon"
+                  />
+                  <p>{`${Math.round(item.main.temp)}°`}</p>
+                  <p className="weatherName">{item.weather[0].main}</p>
+                </div>
+              ))}
+          </div>
+
+          <div className="graph">
+            <Line data={chartData} options={chartOptions} />
+          </div>
+          <div className="hourWeatherDetails">
+            {hourlyData
+              .slice(startIndex, startIndex + (screenWidth < 600 ? 5 : 8))
+              .map((item) => (
+                <div
+                  className="hourDetails Time"
+                  key={item.dt}
+                  style={{ textAlign: "center" }}
+                >
+                  {formatTime(item.dt_txt)}
+                </div>
+              ))}
+          </div>
+        </div>
+      </div>
     );
 
 };
