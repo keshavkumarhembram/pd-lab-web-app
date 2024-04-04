@@ -10,6 +10,7 @@ import RightContainer from './components/RightContainer';
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
+  const [sensorData,setSensorData]=useState(null);
   const [error, setError] = useState(null);
   const [cityName, setcityName] = useState("Rourkela")
   const [showError, setShowError] = useState(false);
@@ -36,13 +37,19 @@ function App() {
       const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
       const data = await response.json();
 
-      if (data.cod === 200) {
+      const sensorResponse = await fetch(
+        `https://weather-api-eadu.onrender.com/weather`
+      );
+      const sensorData = await sensorResponse.json();
+
+      if (data.cod === 200 ||  sensorData.cod ==200) {
         setWeatherData(data);
-        setShowError(false)
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setSensorData(sensorData);
+        setShowError(false);
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
-        setError('City not found!');
-        setShowError(true)
+        setError("City not found!");
+        setShowError(true);
       }
     } catch (error) {
       setError('Error fetching weather data ...');
@@ -61,7 +68,7 @@ function App() {
       {weatherData && (
         <div className="container">
           <LeftContainer fetchWeatherData={fetchWeatherData} weatherData={weatherData} screenWidth={screenWidth} />
-          <RightContainer fetchWeatherData={fetchWeatherData} weatherData={weatherData} screenWidth={screenWidth} cityName={cityName} />
+          <RightContainer fetchWeatherData={fetchWeatherData} weatherData={weatherData} sensorData={sensorData} screenWidth={screenWidth} cityName={cityName} />
         </div>
       )}
       {
