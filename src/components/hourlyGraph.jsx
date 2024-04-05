@@ -146,7 +146,6 @@ const WeatherChart = ({ city,screenWidth }) => {
               <img
                 src={leftArrow}
                 alt=""
-                srcset=""
                 style={{ height: "1.2em" }}
               />
               Prev
@@ -157,7 +156,6 @@ const WeatherChart = ({ city,screenWidth }) => {
               <img
                 src={rightArrow}
                 alt=""
-                srcset=""
                 style={{ height: "1.2em" }}
               />
             </p>

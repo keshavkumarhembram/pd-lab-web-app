@@ -1,9 +1,12 @@
+
 import humidity from "../assets/icons/humidity.png";
 import pressure from "../assets/icons/Pressure.png";
 import temperature from "../assets/icons/Temperature.png";
 
 
-const sensor = ({ sensorData }) => {
+const sensor = ({sensorData}) => {
+  
+
   const weatherDetails = [
     {
       label: "Humidity",
@@ -29,7 +32,8 @@ const sensor = ({ sensorData }) => {
   ];
 
   return (
-    <div className="sensor">
+    <>
+    {sensorData !== null && <div className="sensor">
       <p>Weather Sensor Data</p>
       <div className="sensordata">
         {weatherDetails.map((detail, index) => (
@@ -55,7 +59,8 @@ const sensor = ({ sensorData }) => {
           </div>
         ))}
       </div>
-    </div>
+    </div>}
+    </>
   );
 };
 export default sensor;

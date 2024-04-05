@@ -1,10 +1,25 @@
-import React from 'react'
+import { useEffect, useState } from "react";
 import CityInput from './CityInput';
 import Graph from './hourlyGraph';
 import TodayWeather from "./TodayWeather"
 import Sensor from './sensor';
 
-const RightContainer = ({weatherData,screenWidth,cityName,fetchWeatherData,sensorData}) => {
+const RightContainer = ({weatherData,screenWidth,cityName,fetchWeatherData}) => {
+
+  const [sensorData, setSensorData] = useState(null);
+  const getSensorData = async () => {
+    const sensorResponse = await fetch(
+      `https://weather-api-eadu.onrender.com/weather`
+    );
+    const sensorData = await sensorResponse.json();
+
+    setSensorData(sensorData);
+  };
+
+useEffect(() => {
+  getSensorData();
+}, []);
+
   return (
     <div className='rightContainer'>
     <div className='topBar'>
@@ -14,7 +29,7 @@ const RightContainer = ({weatherData,screenWidth,cityName,fetchWeatherData,senso
       <Graph city={cityName} screenWidth={screenWidth} />
     </div>
     <TodayWeather weatherData={weatherData} />
-    <Sensor sensorData={sensorData}/>
+    {sensorData && <Sensor sensorData={sensorData}/>}
   </div>
   )
 }
