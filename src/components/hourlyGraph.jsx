@@ -23,7 +23,7 @@ const WeatherChart = ({ city,screenWidth }) => {
                 return response.json();
             })
             .then(data => {
-                // console.log(data);
+
                 setHourlyData(data.list);
             })
             .catch(error => {
@@ -143,9 +143,6 @@ const WeatherChart = ({ city,screenWidth }) => {
           <p>Upcoming hours</p>
           <div className="btns">
             <p onClick={handlePrevButtonClick} className="nextday prevday">
-              {/* <span className="material-symbols-rounded ">
-                        chevron_left
-                    </span> */}
               <img
                 src={leftArrow}
                 alt=""
@@ -156,9 +153,7 @@ const WeatherChart = ({ city,screenWidth }) => {
             </p>
             <p onClick={handleNextButtonClick} className="nextday">
               Next
-              {/* <span className="material-symbols-rounded">
-                        chevron_right
-                    </span>  */}
+            
               <img
                 src={rightArrow}
                 alt=""

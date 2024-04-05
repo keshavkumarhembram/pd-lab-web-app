@@ -92,20 +92,11 @@ const TodayWeather = ({weatherData}) => {
           <p>More details of today's weather</p>
           <div className="slidebtns">
             <div onClick={() => scrollWeatherDetails(-500)}>
-              {/* <span className="material-symbols-rounded weatherIcon">
-                {" "}
-                chevron_left
-              </span> */}
               <div style={{ backgroundColor: "#5C9CE5" }} className="icondiv">
                 <img src={leftArrow} className="funicon" />
               </div>
             </div>
             <div onClick={() => scrollWeatherDetails(500)}>
-              {/* <span className="material-symbols-rounded weatherIcon">
-                {" "}
-                chevron_right
-              </span> */}
-
               <div style={{ backgroundColor: "#5C9CE5" }} className="icondiv">
                 <img src={rightArrow} className="funicon" />
               </div>
@@ -117,13 +108,9 @@ const TodayWeather = ({weatherData}) => {
             <div className="detailContainer" key={index}>
               <div className="align">
                 <p>{detail.label}</p>
-                {/* <span className="material-symbols-rounded weatherIcon">
-                  {detail.icon}
-                </span> */}
                 <div style={{ backgroundColor: "#5C9CE5" }} className="icondiv">
                   <img
                     src={detail.imagePath}
-                    // style={{ height: "1.5em" }}
                     className="funicon"
                   />
                 </div>
