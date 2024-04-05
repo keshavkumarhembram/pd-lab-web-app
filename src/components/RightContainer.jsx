@@ -2,8 +2,9 @@ import React from 'react'
 import CityInput from './CityInput';
 import Graph from './hourlyGraph';
 import TodayWeather from "./TodayWeather"
+import Sensor from './sensor';
 
-const RightContainer = ({weatherData,screenWidth,cityName,fetchWeatherData}) => {
+const RightContainer = ({weatherData,screenWidth,cityName,fetchWeatherData,sensorData}) => {
   return (
     <div className='rightContainer'>
     <div className='topBar'>
@@ -13,6 +14,7 @@ const RightContainer = ({weatherData,screenWidth,cityName,fetchWeatherData}) => 
       <Graph city={cityName} screenWidth={screenWidth} />
     </div>
     <TodayWeather weatherData={weatherData} />
+    <Sensor sensorData={sensorData}/>
   </div>
   )
 }

@@ -124,6 +124,8 @@ const TodayWeather = ({weatherData}) => {
             </div>
           ))}
         </div>
+
+      
       </div>
     );
 }
